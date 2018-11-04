@@ -37,6 +37,8 @@ const tables = {
   avatar: 'avatar',
   indent: 'indent',
   student: 'student',
+  file: 'file',
+  code: 'code',
 };
 
 function* create(app, tableName, payload) {
@@ -98,22 +100,21 @@ function* pieAgeCount(app) {
   let ages;
   let category;
   let count;
-  let res;
-  let statistics=[];
+  const statistics = [];
   try {
     ages = yield app.mysql.query(' select distinct age from student');
-    category = ages.length
-    app.logger.info("ages:", ages)
+    category = ages.length;
+    app.logger.info('ages:', ages);
 
-    for (let i=0; i<category; i++) {
+    for (let i = 0; i < category; i++) {
       count = yield app.mysql.query(' select count(1) num from student where age=?', ages[i].age);
-      app.logger.info("count[", i, "]:", count)
+      app.logger.info('count[', i, ']:', count);
       statistics.push({ x: ages[i].age, y: count[0].num });
     }
   } catch (e) {
     throw e;
   }
-  res = statistics;
+  const res = statistics;
   return res;
 }
 

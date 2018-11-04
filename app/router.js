@@ -32,5 +32,6 @@ module.exports = app => {
   app.get('/student/pieAgeCount', 'student.pieAgeCount');
 
   // upload
-  app.post('/upload/avator', 'upload.upload');
+  app.post('/upload/file', 'upload.upload');
+  app.post('/files', 'upload.files');
 };

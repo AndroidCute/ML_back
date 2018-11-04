@@ -27,8 +27,8 @@ module.exports = app => {
 
     * getAll() {
       try {
-        let res = yield getAll(app, tables.student);
-        res.map((item) => {
+        const res = yield getAll(app, tables.student);
+        res.map(item => {
           item.key = item.id;
           return item;
         });
@@ -40,8 +40,8 @@ module.exports = app => {
 
     * getList(where) {
       try {
-        let res = yield getAll(app, tables.student, where);
-        res.map((item) => {
+        const res = yield getAll(app, tables.student, where);
+        res.map(item => {
           item.key = item.id;
           return item;
         });
@@ -52,7 +52,6 @@ module.exports = app => {
     }
 
     * modify(goodsInfo) {
-      const now = new Date();
       try {
         const goods = yield getOne(app, tables.student, { card: goodsInfo.card });
         console.log(goodsInfo);
@@ -88,7 +87,7 @@ module.exports = app => {
 
     * pieAgeCount() {
       try {
-        let res = yield pieAgeCount(app);
+        const res = yield pieAgeCount(app);
         return res;
       } catch (e) {
         return null;

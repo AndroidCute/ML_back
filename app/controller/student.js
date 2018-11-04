@@ -8,17 +8,17 @@ module.exports = app => {
       const { ctx } = this;
       const goodsInfo = ctx.request.body;
       if (!checkParams(goodsInfo.name, goodsInfo.card, goodsInfo.sex, goodsInfo.age, goodsInfo.native, goodsInfo.science, goodsInfo.specialty, goodsInfo.class)) {
-        ctx.body = newErrorWithMessage(error.ErrInvalidParams, "参数错误");
+        ctx.body = newErrorWithMessage(error.ErrInvalidParams, '参数错误');
         return;
       }
 
-      const student = {card: goodsInfo.card}
+      const student = { card: goodsInfo.card };
       const getRes = yield ctx.service.student.getList(student);
-      ctx.logger.info("GetRes:", getRes)
-      const isRes = getRes === null || getRes.length !== 0
-      ctx.logger.info("GetRes:", isRes)
+      ctx.logger.info('GetRes:', getRes);
+      const isRes = getRes === null || getRes.length !== 0;
+      ctx.logger.info('GetRes:', isRes);
       if (isRes) {
-        ctx.body = newErrorWithMessage(error.ErrCardExist, "学号已存在");
+        ctx.body = newErrorWithMessage(error.ErrCardExist, '学号已存在');
         return;
       }
 
@@ -83,10 +83,10 @@ module.exports = app => {
       }
     }
 
-    *pieAgeCount() {
+    * pieAgeCount() {
       const { ctx } = this;
       const res = yield ctx.service.student.pieAgeCount();
-      ctx.logger.info("Getres:", res);
+      ctx.logger.info('Getres:', res);
       if (res) {
         ctx.body = newErrorWithMessage(error.ErrSucceed, res);
       } else {

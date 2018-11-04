@@ -63,6 +63,11 @@ const error = {
     msg: 'upload file error',
   },
 
+  ErrFaildUpload: {
+    code: 400,
+    msg: 'faild',
+  },
+
   // 需要登录
   ErrLoginRequired: {
     code: 0x800,
